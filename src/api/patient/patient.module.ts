@@ -1,3 +1,4 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '../user/auth/auth.module';
@@ -6,7 +7,7 @@ import { Patient } from './patient.entity';
 import { PatientService } from './patient.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Patient])],
+  imports: [TypeOrmModule.forFeature([Patient]), HttpModule],
   controllers: [PatientController],
   providers: [PatientService],
 })
