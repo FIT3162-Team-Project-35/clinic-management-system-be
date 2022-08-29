@@ -35,7 +35,6 @@ export class PatientController {
   private createPatient(
     @Body() body: CreatePatientDto,
   ): Promise<Patient | never> {
-    console.log(123);
     return this.service.create(body);
   }
 
@@ -75,12 +74,34 @@ export class PatientController {
       }),
     )
     file: Express.Multer.File,
-  ) {
+  ): Promise<Patient | never> {
     const getUrl = await this.service.patientRegistration(file);
-    //freeze 5 seconds
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    //freeze 8 seconds
+    await new Promise((resolve) => setTimeout(resolve, 8000));
     const result = await this.service.getPatientRegistrationResult(getUrl);
-    console.log(getUrl);
-    console.log(result.analyzeResult.content.split('\n'));
+    const patientDataArr = [];
+    const fields = result.analyzeResult.documents[0].fields;
+    Object.keys(fields).map((key) => {
+      patientDataArr.push(fields[key].content);
+    });
+
+    const newPatient: CreatePatientDto = {
+      firstName: patientDataArr[0],
+      lastName: patientDataArr[1],
+      contactNumber: patientDataArr[2],
+      gender: patientDataArr[3],
+      address: patientDataArr[4],
+      city: patientDataArr[5],
+      postcode: patientDataArr[6],
+      dob: patientDataArr[7],
+      emergencyFirstName: patientDataArr[8],
+      emergencyLastName: patientDataArr[9],
+      emergencyContact: patientDataArr[10],
+      emergencyRelationship: patientDataArr[11],
+      medicalDetails: patientDataArr[12],
+      allergicDetails: patientDataArr[13],
+    };
+
+    return this.service.create(newPatient);
   }
 }
