@@ -1,5 +1,11 @@
 import { Exclude } from 'class-transformer';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User extends BaseEntity {
@@ -21,4 +27,7 @@ export class User extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: true })
   public gender: string;
+
+  @CreateDateColumn({ type: 'timestamptz' })
+  public createdAt: Date;
 }

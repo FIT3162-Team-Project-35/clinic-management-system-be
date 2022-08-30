@@ -55,9 +55,9 @@ export class Patient extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   public allergicDetails: string | null;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   public createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamptz' })
   public updatedAt: Date;
 }
