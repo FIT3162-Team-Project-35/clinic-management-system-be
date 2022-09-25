@@ -53,4 +53,52 @@ export class UpdatePatientDto {
   @IsString()
   @IsOptional()
   public readonly lastName?: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly contactNumber: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly gender: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly address: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly city: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly postcode: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly dob: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly emergencyFirstName: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly emergencyLastName: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly emergencyContact: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly emergencyRelationship: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly medicalDetails: string;
+
+  @IsString()
+  @IsOptional()
+  public readonly allergicDetails: string;
 }

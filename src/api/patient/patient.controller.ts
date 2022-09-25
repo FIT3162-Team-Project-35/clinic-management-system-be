@@ -84,12 +84,11 @@ export class PatientController {
     Object.keys(fields).map((key) => {
       patientDataArr.push(fields[key].content);
     });
-
     const newPatient: CreatePatientDto = {
       firstName: patientDataArr[0],
       lastName: patientDataArr[1],
-      contactNumber: patientDataArr[2],
-      gender: patientDataArr[3],
+      gender: patientDataArr[2],
+      contactNumber: patientDataArr[3],
       address: patientDataArr[4],
       city: patientDataArr[5],
       postcode: patientDataArr[6],

@@ -40,8 +40,9 @@ export class PatientService {
       where: { id: id },
     });
 
-    patient.firstName = payload.firstName;
-    patient.lastName = payload.lastName;
+    Object.keys(payload).map((key) => {
+      patient[key] = payload[key];
+    });
 
     return this.repository.save(patient);
   }
