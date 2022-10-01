@@ -12,6 +12,9 @@ export class CreateUpdateAppointmentDto {
   @IsString()
   public readonly title: string;
 
+  @IsString()
+  public readonly patientId: string;
+
   @IsDateString()
   public readonly start: Date;
 

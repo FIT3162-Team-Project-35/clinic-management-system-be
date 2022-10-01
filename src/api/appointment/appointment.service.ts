@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import { CreateUpdateAppointmentDto } from './appointment.dto';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
+import { Patient } from '../patient/patient.entity';
+import { PatientService } from '../patient/patient.service';
 
 @Injectable()
 export class AppointmentService {
@@ -12,13 +14,21 @@ export class AppointmentService {
   private readonly repository: Repository<Appointment>;
   @Inject(ConfigService)
   private readonly config: ConfigService;
+  @Inject(PatientService)
+  private readonly patientService: PatientService;
 
   constructor(private readonly httpService: HttpService) {}
 
   public async create(
     body: CreateUpdateAppointmentDto,
   ): Promise<Appointment | never> {
-    return this.repository.save(body);
+    const { patientId } = body;
+    const patient: any = await this.patientService.findById(patientId);
+    const ap = this.repository.create({ ...body, patient });
+    // const patient = new Patient()
+    // patient.id = body.patient
+
+    return this.repository.save(ap);
   }
 
   public async findById(id: string): Promise<Appointment | never> {

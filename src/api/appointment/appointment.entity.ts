@@ -3,9 +3,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
+  RelationId,
   UpdateDateColumn,
 } from 'typeorm';
+import { Patient } from '../patient/patient.entity';
 
 @Entity()
 export class Appointment extends BaseEntity {
@@ -26,4 +31,7 @@ export class Appointment extends BaseEntity {
 
   @UpdateDateColumn({ type: 'timestamptz' })
   public updatedAt: Date;
+
+  @ManyToOne(() => Patient, (patient) => patient.appointments)
+  patient: Patient;
 }

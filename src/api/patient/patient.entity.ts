@@ -4,9 +4,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Appointment } from '../appointment/appointment.entity';
 
 @Entity()
 export class Patient extends BaseEntity {
@@ -54,6 +56,9 @@ export class Patient extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: true })
   public allergicDetails: string | null;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.patient)
+  appointments: Appointment[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   public createdAt: Date;

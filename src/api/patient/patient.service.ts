@@ -24,7 +24,10 @@ export class PatientService {
   }
 
   public async findById(id: string): Promise<Patient | never> {
-    return this.repository.findOne({ where: { id: id } });
+    return this.repository.findOne({
+      where: { id: id },
+      relations: ['appointments'],
+    });
   }
 
   public async findAll(): Promise<Patient[] | never> {
@@ -52,7 +55,9 @@ export class PatientService {
     // console.log(readstream);
     const form = new FormData();
     form.append('file', file.buffer, file.originalname);
-    const postUrl = this.config.get('HTR_END_POINT');
+    //const postUrl = this.config.get('HTR_END_POINT');
+    const postUrl =
+      'https://southeastasia.api.cognitive.microsoft.com/formrecognizer/documentModels/Model_2:analyze?api-version=2022-01-30-preview';
     const config = {
       headers: {
         'Ocp-Apim-Subscription-Key': this.config.get('HTR_SECRET_KEY'),
