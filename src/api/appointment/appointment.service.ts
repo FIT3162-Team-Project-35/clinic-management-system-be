@@ -32,11 +32,16 @@ export class AppointmentService {
   }
 
   public async findById(id: string): Promise<Appointment | never> {
-    return this.repository.findOne({ where: { id: id } });
+    return this.repository.findOne({
+      where: { id: id },
+      relations: ['patient'],
+    });
   }
 
   public async findAll(): Promise<Appointment[] | never> {
-    return this.repository.find();
+    return this.repository.find({
+      relations: ['patient'],
+    });
   }
 
   public async delete(id: string): Promise<void> {
@@ -50,8 +55,13 @@ export class AppointmentService {
     const appointment: Appointment = await this.repository.findOne({
       where: { id: id },
     });
+    const newPatient: any = await this.patientService.findById(
+      payload.patientId,
+    );
 
     appointment.title = payload.title;
+
+    appointment.patient = newPatient;
     appointment.start = payload.start;
     appointment.end = payload.end;
 
