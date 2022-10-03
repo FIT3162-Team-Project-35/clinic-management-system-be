@@ -3,9 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Appointment } from './appointment.entity';
 import { Repository } from 'typeorm';
 import { CreateUpdateAppointmentDto } from './appointment.dto';
-import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { Patient } from '../patient/patient.entity';
 import { PatientService } from '../patient/patient.service';
 
 @Injectable()
@@ -16,8 +14,6 @@ export class AppointmentService {
   private readonly config: ConfigService;
   @Inject(PatientService)
   private readonly patientService: PatientService;
-
-  constructor(private readonly httpService: HttpService) {}
 
   public async create(
     body: CreateUpdateAppointmentDto,

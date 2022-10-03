@@ -12,33 +12,33 @@ import {
   Put,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../user/auth/auth.guard';
-import { AppointmentService } from './appointment.service';
-import { CreateUpdateAppointmentDto } from './appointment.dto';
-import { Appointment } from './appointment.entity';
+import { EncounterService } from './encounter.service';
+import { CreateUpdateEncounterDto } from './encounter.dto';
+import { Encounter } from './encounter.entity';
 
-@Controller('appointment')
-export class AppointmentController {
-  @Inject(AppointmentService)
-  private readonly service: AppointmentService;
+@Controller('encounter')
+export class EncounterController {
+  @Inject(EncounterService)
+  private readonly service: EncounterService;
 
   @Post('create')
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
-  private createAppointment(
-    @Body() body: CreateUpdateAppointmentDto,
-  ): Promise<Appointment | never> {
+  private createEncounter(
+    @Body() body: CreateUpdateEncounterDto,
+  ): Promise<Encounter | never> {
     return this.service.create(body);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  private findAll(): Promise<Appointment[]> {
+  private findAll(): Promise<Encounter[]> {
     return this.service.findAll();
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
-  private findOne(@Param() params): Promise<Appointment> {
+  private findOne(@Param() params): Promise<Encounter> {
     return this.service.findById(params.id);
   }
 
@@ -50,7 +50,7 @@ export class AppointmentController {
 
   @Put('update/:id')
   @UseGuards(JwtAuthGuard)
-  private update(@Param() params, @Body() body: CreateUpdateAppointmentDto) {
+  private update(@Param() params, @Body() body: CreateUpdateEncounterDto) {
     return this.service.update(params.id, body);
   }
 }

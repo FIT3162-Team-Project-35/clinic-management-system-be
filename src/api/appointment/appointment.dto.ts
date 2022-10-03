@@ -1,12 +1,4 @@
-import { Trim } from 'class-sanitizer';
-import {
-  IsEmail,
-  IsOptional,
-  IsString,
-  IsDate,
-  MinLength,
-  IsDateString,
-} from 'class-validator';
+import { IsString, IsDateString } from 'class-validator';
 
 export class CreateUpdateAppointmentDto {
   @IsString()

@@ -10,18 +10,24 @@ import {
 import { Patient } from '../patient/patient.entity';
 
 @Entity()
-export class Appointment extends BaseEntity {
+export class Encounter extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Column({ type: 'varchar' })
-  public title!: string;
+  public diagnosis: string;
+
+  @Column({ type: 'varchar' })
+  public additionalNotes!: string;
 
   @Column({ type: 'timestamptz' })
-  public start!: Date;
+  public serviceDate: Date;
 
   @Column({ type: 'timestamptz' })
-  public end!: Date;
+  public nextAppointment!: Date;
+
+  @Column({ type: 'varchar' })
+  public doctor: string;
 
   @CreateDateColumn({ type: 'timestamptz' })
   public createdAt: Date;
@@ -29,6 +35,6 @@ export class Appointment extends BaseEntity {
   @UpdateDateColumn({ type: 'timestamptz' })
   public updatedAt: Date;
 
-  @ManyToOne(() => Patient, (patient) => patient.appointments)
+  @ManyToOne(() => Patient, (patient) => patient.encounters)
   patient: Patient;
 }

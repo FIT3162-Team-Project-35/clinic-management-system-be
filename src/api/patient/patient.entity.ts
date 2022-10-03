@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Appointment } from '../appointment/appointment.entity';
+import { Encounter } from '../encounter/encounter.entity';
 
 @Entity()
 export class Patient extends BaseEntity {
@@ -59,6 +60,9 @@ export class Patient extends BaseEntity {
 
   @OneToMany(() => Appointment, (appointment) => appointment.patient)
   appointments: Appointment[];
+
+  @OneToMany(() => Encounter, (encounter) => encounter.patient)
+  encounters: Encounter[];
 
   @CreateDateColumn({ type: 'timestamptz' })
   public createdAt: Date;
