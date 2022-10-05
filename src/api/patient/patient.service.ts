@@ -26,7 +26,7 @@ export class PatientService {
   public async findById(id: string): Promise<Patient | never> {
     return this.repository.findOne({
       where: { id: id },
-      relations: ['appointments'],
+      relations: ['appointments', 'encounters'],
     });
   }
 
