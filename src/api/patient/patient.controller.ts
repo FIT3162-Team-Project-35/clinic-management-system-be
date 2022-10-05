@@ -100,7 +100,6 @@ export class PatientController {
       medicalDetails: patientDataArr[12],
       allergicDetails: patientDataArr[13],
     };
-
     return this.service.create(newPatient);
   }
 }

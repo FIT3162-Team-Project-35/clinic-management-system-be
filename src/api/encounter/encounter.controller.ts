@@ -71,7 +71,6 @@ export class EncounterController {
     )
     file: Express.Multer.File,
   ): Promise<Encounter | never> {
-    console.log(file);
     const getUrl = await this.service.patientDiagnosisRecognition(file);
     //freeze 8 seconds
     await new Promise((resolve) => setTimeout(resolve, 8000));
@@ -84,7 +83,6 @@ export class EncounterController {
       diagnosisDataArr.push(fields[key].content);
     });
 
-    console.log(diagnosisDataArr);
     const newEncounter: any = {
       diagnosis: diagnosisDataArr[3],
       serviceDate: diagnosisDataArr[2],
@@ -96,7 +94,6 @@ export class EncounterController {
         lastName: diagnosisDataArr[1],
       },
     };
-    console.log(newEncounter);
 
     return newEncounter;
     // return this.service.create(newPatient);

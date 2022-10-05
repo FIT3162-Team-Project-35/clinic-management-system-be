@@ -57,7 +57,7 @@ export class PatientService {
     form.append('file', file.buffer, file.originalname);
     //const postUrl = this.config.get('HTR_END_POINT');
     const postUrl =
-      'https://southeastasia.api.cognitive.microsoft.com/formrecognizer/documentModels/Model_2:analyze?api-version=2022-01-30-preview';
+      'https://southeastasia.api.cognitive.microsoft.com/formrecognizer/documentModels/greaterPRModelNeural:analyze?api-version=2022-01-30-preview';
     const config = {
       headers: {
         'Ocp-Apim-Subscription-Key': this.config.get('HTR_SECRET_KEY'),
