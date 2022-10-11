@@ -20,11 +20,11 @@ export class Encounter extends BaseEntity {
   @Column({ type: 'varchar' })
   public additionalNotes!: string;
 
-  @Column({ type: 'timestamptz' })
-  public serviceDate: Date;
+  @Column({ type: 'varchar', nullable: true })
+  public serviceDate!: string;
 
-  @Column({ type: 'timestamptz' })
-  public nextAppointment!: Date;
+  @Column({ type: 'varchar', nullable: true })
+  public nextAppointment!: string;
 
   @Column({ type: 'varchar' })
   public doctor: string;

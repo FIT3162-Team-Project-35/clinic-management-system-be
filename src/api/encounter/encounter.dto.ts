@@ -4,8 +4,8 @@ export class CreateUpdateEncounterDto {
   @IsString()
   public readonly diagnosis: string;
 
-  @IsDateString()
-  public readonly serviceDate: Date;
+  @IsString()
+  public readonly serviceDate: string;
 
   @IsString()
   @IsOptional()
@@ -14,9 +14,9 @@ export class CreateUpdateEncounterDto {
   @IsString()
   public readonly patientId: string;
 
-  @IsDateString()
+  @IsString()
   @IsOptional()
-  public readonly nextAppointment: Date;
+  public readonly nextAppointment: string;
 
   @IsString()
   public readonly doctor: string;
