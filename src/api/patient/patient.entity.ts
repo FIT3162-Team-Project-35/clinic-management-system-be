@@ -58,10 +58,14 @@ export class Patient extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   public allergicDetails: string | null;
 
-  @OneToMany(() => Appointment, (appointment) => appointment.patient)
+  @OneToMany(() => Appointment, (appointment) => appointment.patient, {
+    cascade: true,
+  })
   appointments: Appointment[];
 
-  @OneToMany(() => Encounter, (encounter) => encounter.patient)
+  @OneToMany(() => Encounter, (encounter) => encounter.patient, {
+    cascade: true,
+  })
   encounters: Encounter[];
 
   @CreateDateColumn({ type: 'timestamptz' })

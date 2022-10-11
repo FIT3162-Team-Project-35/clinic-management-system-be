@@ -35,6 +35,8 @@ export class Encounter extends BaseEntity {
   @UpdateDateColumn({ type: 'timestamptz' })
   public updatedAt: Date;
 
-  @ManyToOne(() => Patient, (patient) => patient.encounters)
+  @ManyToOne(() => Patient, (patient) => patient.encounters, {
+    onDelete: 'CASCADE',
+  })
   patient: Patient;
 }

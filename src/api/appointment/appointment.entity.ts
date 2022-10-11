@@ -29,6 +29,8 @@ export class Appointment extends BaseEntity {
   @UpdateDateColumn({ type: 'timestamptz' })
   public updatedAt: Date;
 
-  @ManyToOne(() => Patient, (patient) => patient.appointments)
+  @ManyToOne(() => Patient, (patient) => patient.appointments, {
+    onDelete: 'CASCADE',
+  })
   patient: Patient;
 }
