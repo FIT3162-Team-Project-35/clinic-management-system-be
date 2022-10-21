@@ -28,15 +28,4 @@ describe('PatientController', () => {
       expect(await patientController.findAll()).toBe(result);
     });
   });
-
-  // describe('Get Single', () => {
-  //   it('should return a patient', async () => {
-  //     const result: any = ['test'];
-  //     const patientId = '780d2450-cbfe-43e0-acc8-2c5cc15be766';
-  //     const patient = await patientController.findOne(patientId);
-  //     const findOnePatientSpy = jest.spyOn(patientService, 'findById');
-  //     const p = expect(findOnePatientSpy).toHaveBeenCalledWith(patientId);
-  //     expect(p).toBe(patient);
-  //   });
-  // });
 });
