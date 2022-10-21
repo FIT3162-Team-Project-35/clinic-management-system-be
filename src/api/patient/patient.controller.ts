@@ -40,13 +40,13 @@ export class PatientController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  private findAll(): Promise<Patient[]> {
+  public findAll(): Promise<Patient[]> {
     return this.service.findAll();
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
-  private findOne(@Param() params): Promise<Patient> {
+  public findOne(@Param() params): Promise<Patient> {
     return this.service.findById(params.id);
   }
 

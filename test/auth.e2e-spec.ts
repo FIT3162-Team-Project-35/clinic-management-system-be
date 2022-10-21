@@ -25,19 +25,19 @@ describe('Auth Module (e2e)', () => {
     await app.init();
   });
 
-  // it('/ User Register (POST)', async () => {
-  //   const data = {
-  //     email: 'user4@gmail.com',
-  //     password: 'P@ssword123',
-  //     name: 'User4',
-  //   };
+  it('/ User Register (POST)', async () => {
+    const data = {
+      email: 'user-test@gmail.com',
+      password: 'P@ssword123',
+      name: 'UserTest',
+    };
 
-  //   const response = await request(app.getHttpServer())
-  //     .post('/auth/register')
-  //     .send(data);
+    const response = await request(app.getHttpServer())
+      .post('/auth/register')
+      .send(data);
 
-  //   expect(response.status).toEqual(201);
-  // });
+    expect(response.status).toEqual(201);
+  });
 
   it('/ User Login (POST)', async () => {
     const data = {
